@@ -13,8 +13,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private float minMoveSpeed;
 
-    [SerializeField]
-    private float jumpSpeed;
+    //[SerializeField]
+    //private float jumpSpeed;
 
     [SerializeField]
     private Transform bottomEdge;
@@ -31,10 +31,26 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private float shrinkingCooldown;
 
-    private bool isGrounded;
     private Coroutine shrinkingCoroutine;
 
     private new Rigidbody rigidbody;
+
+    //gravity variables
+    private float gravity = -6f;//-9.8f;
+    private float groundedGravity = -0.5f;
+
+    //jumping variables
+    private float initialJumpVelocity;
+    [SerializeField]
+    private float maxJumpHeight = 25.0f;
+    [SerializeField]
+    private float maxJumpTime = 1.5f;
+    private bool isGrounded;
+
+    private void Awake()
+    {
+        SetupJumpVariables();
+    }
 
     private void Start()
     {
@@ -45,12 +61,13 @@ public class PlayerController : MonoBehaviour
     {
         moveSpeed += acceleration * Time.deltaTime;
 
+        HandleGravity(moveSpeed);
+        PlayerJump(moveSpeed);
+
         rigidbody.velocity = new Vector3(moveSpeed, rigidbody.velocity.y, 0f);
 
-        isGrounded = Physics.CheckSphere(bottomEdge.position, checkGroundRadius, groundLayerMask);
-        if (Input.GetKeyDown(KeyCode.Space) && isGrounded) rigidbody.velocity = new Vector3(rigidbody.velocity.x, jumpSpeed, 0f);
-
         if (Input.GetKeyDown(KeyCode.LeftControl) && shrinkingCoroutine == null) shrinkingCoroutine = StartCoroutine(ShrinkingCoroutine());
+
     }
 
     private IEnumerator ShrinkingCoroutine()
@@ -75,5 +92,49 @@ public class PlayerController : MonoBehaviour
     public void CollectCoin()
     {
         GameManager.instance.OnCoinCollected();
+    }
+
+    private void HandleGravity(float x)
+    {
+        isGrounded = Physics.CheckSphere(bottomEdge.position, checkGroundRadius, groundLayerMask);
+
+        bool isFalling = rigidbody.velocity.y <= 0.0f || !Input.GetKeyDown(KeyCode.Space);
+        float fallMultiplier = 2.0f;
+
+        /*if (isGrounded)
+        {
+            rigidbody.velocity = new Vector3(x, groundedGravity, 0);
+        }
+        else */if (isFalling)
+        {
+            float previousYVelocity = rigidbody.velocity.y;
+            float newYVelocity = rigidbody.velocity.y + (fallMultiplier * gravity * Time.deltaTime);
+            float nextYVelocity = (previousYVelocity + newYVelocity) * .5f;
+            rigidbody.velocity = new Vector3(x, nextYVelocity, 0);
+        }
+        else
+        {
+            float previousYVelocity = rigidbody.velocity.y;
+            float newYVelocity = rigidbody.velocity.y + (gravity * Time.deltaTime);
+            float nextYVelocity = (previousYVelocity + newYVelocity) * .5f;
+            rigidbody.velocity = new Vector3(x, nextYVelocity, 0);
+        }
+    }
+
+    private void SetupJumpVariables()
+    {
+        float timeToApex = maxJumpTime / 2;
+        gravity = (-2 * maxJumpHeight) / Mathf.Pow(timeToApex, 2);
+        initialJumpVelocity = (2 * maxJumpHeight) / timeToApex;
+    }
+
+    private void PlayerJump(float x)
+    {
+        // jumping
+        isGrounded = Physics.CheckSphere(bottomEdge.position, checkGroundRadius, groundLayerMask);
+        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
+        {
+            rigidbody.velocity = new Vector3(x, initialJumpVelocity * .5f, 0);
+        }
     }
 }
