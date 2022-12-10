@@ -85,6 +85,21 @@ public class LevelFactory : MonoBehaviour
     [SerializeField]
     private float platformHeightDifferenceNeg; //-2
 
+    [Header("JumpEffect")]
+
+    [SerializeField]
+    private GameObject jumpEffectPrefab;
+
+    [Header("SpeedEffect")]
+
+    [SerializeField]
+    private GameObject speedEffectPrefab;
+
+    [Header("MoneyDecrease")]
+
+    [SerializeField]
+    private GameObject moneyDecreasePrefab;
+
     private string PLATFORM_TAG = "Platform";
 
     private void Start()
@@ -124,7 +139,7 @@ public class LevelFactory : MonoBehaviour
 
     private void CreateObjectsOnGround()
     {
-        var objects = new List<GameObject>() { coinPrefab, obstaclePrefab };
+        var objects = new List<GameObject>() { coinPrefab, obstaclePrefab, jumpEffectPrefab, moneyDecreasePrefab, speedEffectPrefab };
         float posX = 6f; //can be changed to random position for first object
         while (posX < levelWidth)
         {
@@ -138,7 +153,7 @@ public class LevelFactory : MonoBehaviour
         GameObject[] platforms;
         platforms = GameObject.FindGameObjectsWithTag(PLATFORM_TAG);
 
-        var objects = new List<GameObject>() { coinPrefab, obstaclePrefab };
+        var objects = new List<GameObject>() { coinPrefab, obstaclePrefab, jumpEffectPrefab, moneyDecreasePrefab, speedEffectPrefab};
 
         foreach (GameObject plat in platforms)
         {
