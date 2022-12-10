@@ -102,6 +102,11 @@ public class PlayerController : MonoBehaviour
         GameManager.instance.OnCoinCollected();
     }
 
+    public void LostCoins(int amount)
+    {
+        GameManager.instance.OnCoinDecrease(amount);
+    }
+
     public void TakeEffect(BaseEffect effect)
     {
         // TODO: Add effect to UI (maybe bar of effects)
