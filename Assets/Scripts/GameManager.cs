@@ -109,4 +109,10 @@ public class GameManager : MonoBehaviour
             StartCoroutine(WinGame());
         }
     }
+
+    public void OnCoinDecrease(int amount)
+    {
+        coins -= coins > amount ? amount : coins;
+        coinsUI.text = $"Coins: {coins}";       
+    }
 }
