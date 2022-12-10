@@ -4,12 +4,23 @@ using UnityEngine;
 
 public class LevelFactory : MonoBehaviour
 {
+    [SerializeField]
+    private float levelWidth; //100
+
+    [Header("Objects")]
+
+    [SerializeField]
+    private float minDistanceBetweenObjects; //4
+
+    [SerializeField]
+    private float maxDistanceBetweenObjects; //10
+
     [Header("Obstacles")]
 
     [SerializeField]
     private GameObject obstaclePrefab;
 
-    [SerializeField]
+    /*[SerializeField]
     private int obstacleNumber;
 
     [SerializeField]
@@ -19,7 +30,7 @@ public class LevelFactory : MonoBehaviour
     private float minDistanceBetweenObstacles;
 
     [SerializeField]
-    private float maxDistanceBetweenObstacles;
+    private float maxDistanceBetweenObstacles;*/
 
 
     [Header("Coins")]
@@ -27,11 +38,8 @@ public class LevelFactory : MonoBehaviour
     [SerializeField]
     private GameObject coinPrefab;
 
-    [SerializeField]
+    /*[SerializeField]
     private int coinNumber;
-
-    [SerializeField]
-    private int coinNumberGround;
 
     [SerializeField]
     private float previousCoinPosition;
@@ -40,154 +48,118 @@ public class LevelFactory : MonoBehaviour
     private float distanceBetweenCoins;
 
     [SerializeField]
-    private int coinHeight;
+    private int coinHeight;*/
 
     [Header("Platforms")]
 
     [SerializeField]
     private GameObject platformPrefab;
 
-    [SerializeField]
-    private int platformNumberNear;
+    /*[SerializeField]
+    private int minPlatformNumber;
 
     [SerializeField]
-    private int platformNumberAll;
+    private int maxPlatformNumber;
 
     [SerializeField]
     private float previousPlatformPositionX;
 
     [SerializeField]
-    private float previousPlatformPositionY;
+    private float previousPlatformPositionY;*/
 
     [SerializeField]
-    private float distanceBetweenPlatforms;
+    private float minDistanceBetweenPlatforms; //4
 
     [SerializeField]
-    private float minPlatformHeight;
+    private float maxDistanceBetweenPlatforms; //6
 
     [SerializeField]
-    private float maxPlatformHeight;
+    private float minPlatformHeight; //2
 
     [SerializeField]
-    private float newYPosition;
+    private float maxPlatformHeight; //10
 
     [SerializeField]
-    private float platformHeightDifferencePos;
+    private float platformHeightDifferencePos; //2
 
     [SerializeField]
-    private float platformHeightDifferenceNeg;
+    private float platformHeightDifferenceNeg; //-2
 
-    private string GROUND_TAG = "Ground";
     private string PLATFORM_TAG = "Platform";
-    private string OBSTACLE_TAG = "Obstacle";
 
     private void Start()
-    {        
-        CreateObstacles();
-        SetAllPlatformsAndCoinsBetweenThem();
-        CreateCoinsOnPlatforms();
-        //CreateCoinsOnGround();
-
-        /*for (int i = 0; i < coinNumber; i++)
-        {
-            float newXPositon = previousCoinPosition + Random.Range(minDistanceBetweenCoins, maxDistanceBetweenCoins);
-            GameObject ground = FindGroundInRange(newXPositon, Random.Range(minDistanceBetweenCoins, maxDistanceBetweenCoins));
-            float newYPosition = ground.transform.position.y + coinHeight;
-            Instantiate(coinPrefab, new Vector3(newXPositon, newYPosition, 0f), Quaternion.identity);
-            previousCoinPosition = newXPositon;
-        }*/
-
+    {
+        GeneratePlatforms();
+        CreateObjectsOnGround();
+        CreateObjectsOnPlatforms();
     }
 
-    private void CreateObstacles()
+    private void GeneratePlatforms()
     {
-        for (int i = 0; i < obstacleNumber; i++)
+        //random x position for first platform
+        float posX = Random.Range(0, levelWidth);
+        //start y so player can jump on it
+        float posY = 2f;
+        var diff = new List<float>() { platformHeightDifferencePos, platformHeightDifferenceNeg };
+        while (posX < levelWidth)
         {
-            float newXPositon = previousObstaclePosition + Random.Range(minDistanceBetweenObstacles, maxDistanceBetweenObstacles);
-            Instantiate(obstaclePrefab, new Vector3(newXPositon, Random.Range(0, 2), 0f), Quaternion.identity);
-            previousObstaclePosition = newXPositon;
-        }
-    }
+            Instantiate(platformPrefab, new Vector3(posX, posY, 0f), Quaternion.identity);
 
-    private void CreatePlatforms()
-    {
-        for (int i = 0; i < platformNumberNear; i++)
-        {
-            var diff = new List<float>() { platformHeightDifferencePos, platformHeightDifferenceNeg };
-            float newXPositon = previousPlatformPositionX + distanceBetweenPlatforms;
-            if (i == 0)
+            if (posY < maxPlatformHeight && posY > minPlatformHeight)
             {
-                newYPosition = 2;
-                Instantiate(platformPrefab, new Vector3(newXPositon, newYPosition, 0f), Quaternion.identity);
-                previousPlatformPositionX = newXPositon;
-                previousPlatformPositionY = newYPosition;
-            } else
-            {
-                if (previousPlatformPositionY < maxPlatformHeight && previousPlatformPositionY > minPlatformHeight)
-                {
-                    newYPosition = previousPlatformPositionY + diff[Random.Range(0, diff.Count)];
-                }
-                else if (previousPlatformPositionY == minPlatformHeight)
-                {
-                    newYPosition = previousPlatformPositionY + platformHeightDifferencePos;
-                }
-                else if (previousPlatformPositionY == maxPlatformHeight)
-                {
-                    newYPosition = previousPlatformPositionY + platformHeightDifferenceNeg;
-                }
-                Instantiate(platformPrefab, new Vector3(newXPositon, newYPosition, 0f), Quaternion.identity);
-                previousPlatformPositionX = newXPositon;
-                previousPlatformPositionY = newYPosition;
+                posY += diff[Random.Range(0, diff.Count)];
             }
-        }
-    }
-
-    private bool ObstacleCheck(float x)
-    {
-        GameObject[] obstacles;
-        obstacles = GameObject.FindGameObjectsWithTag(OBSTACLE_TAG);
-        bool result = false;
-        foreach (GameObject ob in obstacles)
-        {
-            if (x > ob.transform.position.x - 1 && x < ob.transform.position.x + 1)
-                result = true;
-        }
-        return result;
-    }
-
-    private void SetAllPlatformsAndCoinsBetweenThem()
-    {
-        for (int i = 0; i < platformNumberAll; i++)
-        {
-            CreatePlatforms();
-            previousPlatformPositionX += 50;
-
-            //creating coins between platforms
-            for (int j = 0; j < coinNumberGround; j++)
+            else if (posY == minPlatformHeight)
             {
-                if (j == 0)
-                {
-                    float newXPositon = previousPlatformPositionX + distanceBetweenCoins - 45;
-                    Instantiate(coinPrefab, new Vector3(newXPositon, 0f, 0f), Quaternion.identity);
-                    previousCoinPosition = newXPositon;
-                } else {
-                    float newXPositon = previousCoinPosition + distanceBetweenCoins;
-                    Instantiate(coinPrefab, new Vector3(newXPositon, 0f, 0f), Quaternion.identity);
-                    previousCoinPosition = newXPositon;
-                }
-
+                posY += platformHeightDifferencePos;
             }
+            else if (posY == maxPlatformHeight)
+            {
+                posY += platformHeightDifferenceNeg;
+            }
+
+            posX += Random.Range(minDistanceBetweenPlatforms, maxDistanceBetweenPlatforms);
         }
     }
 
-    private void CreateCoinsOnPlatforms()
+    private void CreateObjectsOnGround()
+    {
+        var objects = new List<GameObject>() { coinPrefab, obstaclePrefab };
+        float posX = 6f; //can be changed to random position for first object
+        while (posX < levelWidth)
+        {
+            Instantiate(objects[Random.Range(0, objects.Count)], new Vector3(posX, Random.Range(0, 2), 0f), Quaternion.identity);
+            posX += Random.Range(minDistanceBetweenObjects, maxDistanceBetweenObjects); ;
+        }
+    }
+
+    private void CreateObjectsOnPlatforms()
     {
         GameObject[] platforms;
         platforms = GameObject.FindGameObjectsWithTag(PLATFORM_TAG);
+
+        var objects = new List<GameObject>() { coinPrefab, obstaclePrefab };
+
         foreach (GameObject plat in platforms)
         {
-            Instantiate(coinPrefab, new Vector3(plat.transform.position.x, plat.transform.position.y + 2, 0f), Quaternion.identity);
+            //i hope x position is always the half of game object :(
+            float half = GetObjectWidth(plat) / 2;
+            float posX = plat.transform.position.x - half;
+            while (posX < plat.transform.position.x + half) 
+            {
+                Instantiate(objects[Random.Range(0, objects.Count)], 
+                    new Vector3(posX, plat.transform.position.y + 2, 0f), Quaternion.identity);
+                posX += 2;//Random.Range(minDistanceBetweenObjects, maxDistanceBetweenObjects);
+            }
         }
+
+    }
+
+    //getting width from box collider size and object scale
+    private float GetObjectWidth(GameObject gameObject)
+    {
+        BoxCollider boxCollider = gameObject.GetComponent<BoxCollider>();
+        return boxCollider.size.x * gameObject.transform.localScale.x;
     }
 
 
