@@ -36,7 +36,7 @@ public class PlayerController : MonoBehaviour
     private new Rigidbody rigidbody;
 
     //gravity variables
-    private float gravity = -6f;//-9.8f;
+    public float gravity = -6f;//-9.8f;
     private float groundedGravity = -0.5f;
 
     //jumping variables
@@ -105,7 +105,7 @@ public class PlayerController : MonoBehaviour
     public void TakeEffect(BaseEffect effect)
     {
         // TODO: Add effect to UI (maybe bar of effects)
- 
+
         effects.Add(effect);
     }
 
@@ -119,7 +119,7 @@ public class PlayerController : MonoBehaviour
                 // TODO: Add removing from UI
 
                 effects.Remove(effect);
-                effect.Ending(this);
+                effect.Ending();
 
                 i = 0;
             }

@@ -7,9 +7,21 @@ public abstract class BaseEffect : MonoBehaviour
     public float TimeOfAction => time;
     public float StartTime { get; set; }
 
-    protected abstract void OnTriggerEnter(Collider other);
+    public PlayerController Player { get; private set; }
 
-    public virtual void Ending(PlayerController player)
+    private void OnTriggerEnter(Collider other)
+    {
+        Player = other.GetComponent<PlayerController>();
+        GetComponent<SpriteRenderer>().enabled = false;
+        Player.TakeEffect(this);
+        StartTime = Time.timeSinceLevelLoad;
+
+        Effect();
+    }
+
+    protected abstract void Effect();
+
+    public virtual void Ending()
     {
         //When override add logic to remove effect from player
         Destroy(gameObject);
