@@ -300,8 +300,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 214958338}
   m_LocalRotation: {x: -0, y: 0.72495306, z: -0, w: 0.68879837}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0.39, z: 0}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1084319821}
@@ -1687,8 +1687,8 @@ MonoBehaviour:
   maxPlatformNumberInChunk: 10
   chunkNumber: 10
   distanceBetweenPlatforms: 6
-  minPlatformHeight: 2
-  maxPlatformHeight: 7
+  minPlatformHeight: 3
+  maxPlatformHeight: 15
   platformHeightStep: 2
   distanceBetweenChunks: 10
   background: {fileID: 2562352699122440987, guid: ada5be31b460da34eac9643be57a1726, type: 3}
@@ -1878,7 +1878,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 757455fd88486df40a57b05faf082710, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.45
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 757455fd88486df40a57b05faf082710, type: 3}
       propertyPath: m_LocalPosition.z
