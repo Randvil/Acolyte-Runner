@@ -48,6 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   time: 3
+  audioEffect: {fileID: 8300000, guid: b18597246caaf204d90c9fac2c684137, type: 3}
   speedUp: 10
 --- !u!212 &7073563912623064843
 SpriteRenderer:

@@ -48,6 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   time: 9
+  audioEffect: {fileID: 8300000, guid: 89179c008f081684f9de9c0eef360195, type: 3}
   gravityModifier: 0.5
 --- !u!212 &6035923812030765686
 SpriteRenderer:

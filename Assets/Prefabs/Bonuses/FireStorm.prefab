@@ -62,6 +62,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   time: 2
+  audioEffect: {fileID: 8300000, guid: dfb091a5771345041a75e8307b9b9518, type: 3}
   moveXatFrame: 32
   stormSprite: {fileID: 21300000, guid: 4f5ff68efa90aee459cf64215c6bd06b, type: 3}
 --- !u!212 &-6928823560666592891
