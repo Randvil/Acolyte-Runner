@@ -7,16 +7,20 @@ public abstract class BaseEffect : MonoBehaviour
     public float TimeOfAction => time;
     public float StartTime { get; set; }
 
-    public PlayerController Player { get; private set; }
+    public PlayerController Player { get; protected set; }
 
-    private void OnTriggerEnter(Collider other)
+    protected virtual void OnTriggerEnter(Collider other)
     {
         Player = other.GetComponent<PlayerController>();
-        GetComponent<SpriteRenderer>().enabled = false;
-        Player.TakeEffect(this);
-        StartTime = Time.timeSinceLevelLoad;
 
-        Effect();
+        if (Player != null)
+        { 
+            GetComponent<SpriteRenderer>().enabled = false;
+            Player.TakeEffect(this);
+            StartTime = Time.timeSinceLevelLoad;
+
+            Effect();
+        }
     }
 
     protected abstract void Effect();

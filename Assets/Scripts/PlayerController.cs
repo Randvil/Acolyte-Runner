@@ -45,7 +45,15 @@ public class PlayerController : MonoBehaviour
     private float maxJumpHeight = 25.0f;
     [SerializeField]
     private float maxJumpTime = 1.5f;
+
     private bool isGrounded;
+
+    [SerializeField]
+    private AudioClip needMoreGoldAudioClip;
+
+    [SerializeField]
+    private AudioClip deathAudioClip;
+
 
     public List<BaseEffect> effects;
 
@@ -71,6 +79,8 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.LeftControl) && shrinkingCoroutine == null) shrinkingCoroutine = StartCoroutine(ShrinkingCoroutine());
 
         CheckEffects();
+
+        if (transform.position.y < -0.5f) transform.position = new Vector3(transform.position.x, -0.5f, 0f);
     }
 
     private IEnumerator ShrinkingCoroutine()
@@ -87,6 +97,11 @@ public class PlayerController : MonoBehaviour
         shrinkingCoroutine = null;
     }
 
+    public void GetHit()
+    {
+        GameManager.instance.PlayAudioClip(deathAudioClip, true);
+    }
+
     public void DecreaseSpeed(float value)
     {
         moveSpeed = Mathf.Clamp(moveSpeed - value, minMoveSpeed, float.MaxValue);
@@ -99,11 +114,13 @@ public class PlayerController : MonoBehaviour
 
     public void CollectCoin()
     {
+        GameManager.instance.PlayAudioClip(needMoreGoldAudioClip);
         GameManager.instance.OnCoinCollected();
     }
 
     public void LostCoins(int amount)
     {
+        GameManager.instance.PlayAudioClip(needMoreGoldAudioClip);
         GameManager.instance.OnCoinDecrease(amount);
     }
 

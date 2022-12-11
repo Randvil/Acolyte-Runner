@@ -141,4 +141,5 @@ public class LevelFactory : MonoBehaviour
         CreatePlatforms();
         previousPlatformPositionX += distanceBetweenChunks;
     }
+
 }
