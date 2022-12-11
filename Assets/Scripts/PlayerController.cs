@@ -37,7 +37,6 @@ public class PlayerController : MonoBehaviour
 
     //gravity variables
     public float gravity = -6f;//-9.8f;
-    private float groundedGravity = -0.5f;
 
     //jumping variables
     private float initialJumpVelocity;
@@ -54,8 +53,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private AudioClip deathAudioClip;
 
-
     public List<BaseEffect> effects;
+
+    private Animator animator;
 
     private void Awake()
     {
@@ -65,6 +65,7 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         rigidbody = GetComponent<Rigidbody>();
+        animator = GetComponent<Animator>();
     }
 
     private void Update()
@@ -100,16 +101,19 @@ public class PlayerController : MonoBehaviour
     public void GetHit()
     {
         GameManager.instance.PlayAudioClip(deathAudioClip, true);
+        animator.SetBool("GetHit", true);
     }
 
     public void DecreaseSpeed(float value)
     {
         moveSpeed = Mathf.Clamp(moveSpeed - value, minMoveSpeed, float.MaxValue);
+        animator.SetBool("Sprint", false);
     }
 
     public void IncreaseSpeed(float value)
     {
         moveSpeed = Mathf.Clamp(moveSpeed + value, minMoveSpeed, float.MaxValue);
+        animator.SetBool("Sprint", true);
     }
 
     public void CollectCoin()
@@ -188,7 +192,8 @@ public class PlayerController : MonoBehaviour
         isGrounded = Physics.CheckSphere(bottomEdge.position, checkGroundRadius, groundLayerMask);
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
+            animator.SetTrigger("JumpTrigger");
             rigidbody.velocity = new Vector3(x, initialJumpVelocity * .5f, 0);
-        }
+        } else animator.SetBool("IsGrounded", true);
     }
 }
