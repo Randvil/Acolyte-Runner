@@ -131,7 +131,7 @@ public class PlayerController : MonoBehaviour
     public void TakeEffect(BaseEffect effect)
     {
         // TODO: Add effect to UI (maybe bar of effects)
-
+        GameManager.instance.PlayAudioClip(effect.audioEffect);
         effects.Add(effect);
     }
 

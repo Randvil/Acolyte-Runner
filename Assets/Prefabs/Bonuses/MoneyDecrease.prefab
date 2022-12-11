@@ -61,6 +61,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   time: 0
+  audioEffect: {fileID: 8300000, guid: 23333154e1b586740afe0ec9b2a604bc, type: 3}
   amount: 3
 --- !u!212 &-5631012076092967839
 SpriteRenderer:

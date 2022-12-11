@@ -9,6 +9,8 @@ public abstract class BaseEffect : MonoBehaviour
 
     public PlayerController Player { get; protected set; }
 
+    public AudioClip audioEffect;
+
     protected virtual void OnTriggerEnter(Collider other)
     {
         Player = other.GetComponent<PlayerController>();

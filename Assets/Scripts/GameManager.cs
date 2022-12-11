@@ -117,7 +117,7 @@ public class GameManager : MonoBehaviour
 
         Time.timeScale = 1f;
 
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1);
     }
 
     private IEnumerator WinGame()
@@ -145,7 +145,7 @@ public class GameManager : MonoBehaviour
 
     public void OnExit()
     {
-        Application.Quit();
+        SceneManager.LoadScene(0);
     }
 
     public void OnCoinCollected()
