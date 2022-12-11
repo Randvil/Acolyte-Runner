@@ -4,60 +4,46 @@ using UnityEngine;
 
 public class LevelFactory : MonoBehaviour
 {
-    [Header("Obstacles")]
+    [Header("Coins and Bonuses")]
 
     [SerializeField]
-    private GameObject obstaclePrefab;
+    private int coinsAndBonusesNumber;
 
     [SerializeField]
-    private int obstacleNumber;
+    private float previousCoinOrBonusPosition;
 
     [SerializeField]
-    private float previousObstaclePosition;
+    private float minDistanceBetweenCoinOrBonus;
 
     [SerializeField]
-    private float minDistanceBetweenObstacles;
+    private float maxDistanceBetweenCoinOrBonus;
 
     [SerializeField]
-    private float maxDistanceBetweenObstacles;
-
-
-    [Header("Coins")]
+    private float bonusProbability;
 
     [SerializeField]
     private GameObject coinPrefab;
 
     [SerializeField]
-    private int coinNumber;
+    private GameObject[] bonusesPrefabs;
 
-    [SerializeField]
-    private int coinNumberGround;
-
-    [SerializeField]
-    private float previousCoinPosition;
-
-    [SerializeField]
-    private float distanceBetweenCoins;
-
-    [SerializeField]
-    private int coinHeight;
 
     [Header("Platforms")]
+
+    [SerializeField]
+    private Transform player;
 
     [SerializeField]
     private GameObject platformPrefab;
 
     [SerializeField]
-    private int platformNumberNear;
+    private int minPlatformNumberInChunk;
 
     [SerializeField]
-    private int platformNumberAll;
+    private int maxPlatformNumberInChunk;
 
     [SerializeField]
-    private float previousPlatformPositionX;
-
-    [SerializeField]
-    private float previousPlatformPositionY;
+    private int chunkNumber;
 
     [SerializeField]
     private float distanceBetweenPlatforms;
@@ -69,127 +55,90 @@ public class LevelFactory : MonoBehaviour
     private float maxPlatformHeight;
 
     [SerializeField]
+    private float platformHeightStep;
+
+    [SerializeField]
+    private float distanceBetweenChunks;
+
+    private float previousPlatformPositionX = 10f;
+    private float previousPlatformPositionY;
     private float newYPosition;
 
-    [SerializeField]
-    private float platformHeightDifferencePos;
+    [Header("Background")]
 
     [SerializeField]
-    private float platformHeightDifferenceNeg;
+    private GameObject background;
 
-    private string GROUND_TAG = "Ground";
-    private string PLATFORM_TAG = "Platform";
-    private string OBSTACLE_TAG = "Obstacle";
+    [SerializeField]
+    private float backgroundWidth;
 
-    private void Start()
-    {        
-        CreateObstacles();
-        SetAllPlatformsAndCoinsBetweenThem();
-        CreateCoinsOnPlatforms();
-        //CreateCoinsOnGround();
+    [SerializeField]
+    private float backgroundYPosition;
 
-        /*for (int i = 0; i < coinNumber; i++)
+    private int backgroundNumber;
+    private List<GameObject> backgrounds = new();
+
+    private void Update()
+    {
+        if (player.transform.position.x > previousPlatformPositionX - 20f) BuildPlatformChunk();
+        if (player.transform.position.x > previousCoinOrBonusPosition - 20f) SpawnCoinsAndBonuses();
+
+        if (player.transform.position.x > (backgroundNumber - 1) * backgroundWidth)
         {
-            float newXPositon = previousCoinPosition + Random.Range(minDistanceBetweenCoins, maxDistanceBetweenCoins);
-            GameObject ground = FindGroundInRange(newXPositon, Random.Range(minDistanceBetweenCoins, maxDistanceBetweenCoins));
-            float newYPosition = ground.transform.position.y + coinHeight;
-            Instantiate(coinPrefab, new Vector3(newXPositon, newYPosition, 0f), Quaternion.identity);
-            previousCoinPosition = newXPositon;
-        }*/
+            backgrounds.Add(Instantiate(background, new Vector3(backgroundWidth * backgroundNumber, backgroundYPosition, 0f), Quaternion.identity));
+            if (backgroundNumber > 1) Destroy(backgrounds[backgroundNumber - 2]);
 
+            backgroundNumber += 1;
+        }
     }
 
-    private void CreateObstacles()
+    private void SpawnCoinsAndBonuses()
     {
-        for (int i = 0; i < obstacleNumber; i++)
+        for (int i = 0; i < coinsAndBonusesNumber; i++)
         {
-            float newXPositon = previousObstaclePosition + Random.Range(minDistanceBetweenObstacles, maxDistanceBetweenObstacles);
-            Instantiate(obstaclePrefab, new Vector3(newXPositon, Random.Range(0, 2), 0f), Quaternion.identity);
-            previousObstaclePosition = newXPositon;
+            float newXPositon = previousCoinOrBonusPosition + Random.Range(minDistanceBetweenCoinOrBonus, maxDistanceBetweenCoinOrBonus);
+            if (Random.Range(0f, 100f) < bonusProbability) Instantiate(bonusesPrefabs[Random.Range(0, bonusesPrefabs.Length)], new Vector3(newXPositon, 0f, 0f), Quaternion.identity);
+            else Instantiate(coinPrefab, new Vector3(newXPositon, 0f, 0f), Quaternion.identity);
+            previousCoinOrBonusPosition = newXPositon;
         }
     }
 
     private void CreatePlatforms()
     {
-        for (int i = 0; i < platformNumberNear; i++)
+        for (int i = 0; i < Random.Range(minPlatformNumberInChunk, maxPlatformNumberInChunk + 1); i++)
         {
-            var diff = new List<float>() { platformHeightDifferencePos, platformHeightDifferenceNeg };
             float newXPositon = previousPlatformPositionX + distanceBetweenPlatforms;
             if (i == 0)
             {
                 newYPosition = 2;
-                Instantiate(platformPrefab, new Vector3(newXPositon, newYPosition, 0f), Quaternion.identity);
-                previousPlatformPositionX = newXPositon;
-                previousPlatformPositionY = newYPosition;
-            } else
+            }
+            else
             {
                 if (previousPlatformPositionY < maxPlatformHeight && previousPlatformPositionY > minPlatformHeight)
                 {
-                    newYPosition = previousPlatformPositionY + diff[Random.Range(0, diff.Count)];
+                    newYPosition = previousPlatformPositionY + Mathf.Sign(Random.Range(-1f, 1f)) * platformHeightStep;
                 }
                 else if (previousPlatformPositionY == minPlatformHeight)
                 {
-                    newYPosition = previousPlatformPositionY + platformHeightDifferencePos;
+                    newYPosition = previousPlatformPositionY + platformHeightStep;
                 }
                 else if (previousPlatformPositionY == maxPlatformHeight)
                 {
-                    newYPosition = previousPlatformPositionY + platformHeightDifferenceNeg;
+                    newYPosition = previousPlatformPositionY - platformHeightStep;
                 }
-                Instantiate(platformPrefab, new Vector3(newXPositon, newYPosition, 0f), Quaternion.identity);
-                previousPlatformPositionX = newXPositon;
-                previousPlatformPositionY = newYPosition;
             }
+
+            GameObject platform = Instantiate(platformPrefab, new Vector3(newXPositon, newYPosition, 0f), Quaternion.identity);
+            Instantiate(coinPrefab, new Vector3(platform.transform.position.x - 1f, platform.transform.position.y + 1f, 0f), Quaternion.identity);
+            Instantiate(coinPrefab, new Vector3(platform.transform.position.x + 1f, platform.transform.position.y + 1f, 0f), Quaternion.identity);
+            previousPlatformPositionX = newXPositon;
+            previousPlatformPositionY = newYPosition;
         }
     }
 
-    private bool ObstacleCheck(float x)
+    private void BuildPlatformChunk()
     {
-        GameObject[] obstacles;
-        obstacles = GameObject.FindGameObjectsWithTag(OBSTACLE_TAG);
-        bool result = false;
-        foreach (GameObject ob in obstacles)
-        {
-            if (x > ob.transform.position.x - 1 && x < ob.transform.position.x + 1)
-                result = true;
-        }
-        return result;
+        CreatePlatforms();
+        previousPlatformPositionX += distanceBetweenChunks;
     }
-
-    private void SetAllPlatformsAndCoinsBetweenThem()
-    {
-        for (int i = 0; i < platformNumberAll; i++)
-        {
-            CreatePlatforms();
-            previousPlatformPositionX += 50;
-
-            //creating coins between platforms
-            for (int j = 0; j < coinNumberGround; j++)
-            {
-                if (j == 0)
-                {
-                    float newXPositon = previousPlatformPositionX + distanceBetweenCoins - 45;
-                    Instantiate(coinPrefab, new Vector3(newXPositon, 0f, 0f), Quaternion.identity);
-                    previousCoinPosition = newXPositon;
-                } else {
-                    float newXPositon = previousCoinPosition + distanceBetweenCoins;
-                    Instantiate(coinPrefab, new Vector3(newXPositon, 0f, 0f), Quaternion.identity);
-                    previousCoinPosition = newXPositon;
-                }
-
-            }
-        }
-    }
-
-    private void CreateCoinsOnPlatforms()
-    {
-        GameObject[] platforms;
-        platforms = GameObject.FindGameObjectsWithTag(PLATFORM_TAG);
-        foreach (GameObject plat in platforms)
-        {
-            Instantiate(coinPrefab, new Vector3(plat.transform.position.x, plat.transform.position.y + 2, 0f), Quaternion.identity);
-        }
-    }
-
-
-
 }

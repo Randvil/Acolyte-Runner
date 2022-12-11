@@ -6,6 +6,24 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    private enum eTimerType
+    {
+        Simple,
+        Countdown
+    }
+
+    private enum eWinCondition
+    {
+        Infinite,
+        Coins
+    }
+
+    [SerializeField]
+    private eTimerType timerType = eTimerType.Simple;
+
+    [SerializeField]
+    private eWinCondition winCondition = eWinCondition.Infinite;
+
     [SerializeField]
     private float timeLimit;
 
@@ -36,31 +54,59 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
 
     private int coins;
+    private Coroutine audioClipCoroutine;
+
+    private AudioSource audioSource;
 
     private void Start()
     {
         instance = this;
 
         Time.timeScale = 0f;
+
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void Update()
     {
-        float timeLeft = timeLimit - Time.timeSinceLevelLoad;
-        if (timeLeft > 0f) timerUI.text = $"Time left: {timeLeft:N0}";
+        if (timerType == eTimerType.Simple)
+        {
+            SimpleTimer();
+        }
         else
         {
-            timerUI.text = $"Time left: 0";
-            StartCoroutine(LoseGame());
+            Countdown();
         }
     }
 
-    private IEnumerator LoseGame()
+    private void SimpleTimer()
+    {
+        timerUI.text = $"Time: {Time.timeSinceLevelLoad:N0}";
+    }
+
+    private void Countdown()
+    {
+        float timeLeft = timeLimit - Time.timeSinceLevelLoad;
+        if (timeLeft > 0f) timerUI.text = $"Time: {timeLeft:N0}";
+        else
+        {
+            timerUI.text = $"Time: 0";
+            LoseGame();
+        }
+    }
+
+    public void LoseGame()
+    {
+        StartCoroutine(LoseGameCoroutine());
+    }
+
+    private IEnumerator LoseGameCoroutine()
     {
         Time.timeScale = 0f;
 
         loseScreenUI.SetActive(true);
-        loseScreenCoinsUI.text = $"{coins}/{coinsRequired}";
+        if (winCondition == eWinCondition.Coins) loseScreenCoinsUI.text = $"{coins}/{coinsRequired}";
+        else loseScreenCoinsUI.text = $"{coins}";
 
         yield return new WaitForSecondsRealtime(3f);
 
@@ -102,9 +148,9 @@ public class GameManager : MonoBehaviour
     public void OnCoinCollected()
     {
         coins += 1;
-        coinsUI.text = $"Coins: {coins}";
+        coinsUI.text = $"{coins}";
 
-        if (coins >= coinsRequired)
+        if (coins >= coinsRequired && winCondition == eWinCondition.Coins)
         {
             StartCoroutine(WinGame());
         }
@@ -113,6 +159,21 @@ public class GameManager : MonoBehaviour
     public void OnCoinDecrease(int amount)
     {
         coins -= coins > amount ? amount : coins;
-        coinsUI.text = $"Coins: {coins}";       
+        coinsUI.text = $"{coins}";       
+    }
+
+    public void PlayAudioClip(AudioClip clip, bool forceSound = false)
+    {
+        if (audioClipCoroutine == null || forceSound) audioClipCoroutine = StartCoroutine(AudioClipCoroutine(clip));
+    }
+
+    public IEnumerator AudioClipCoroutine(AudioClip clip)
+    {
+        audioSource.clip = clip;
+        audioSource.Play();
+
+        yield return new WaitUntil(() => !audioSource.isPlaying);
+
+        audioClipCoroutine = null;
     }
 }
