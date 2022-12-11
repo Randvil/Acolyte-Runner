@@ -307,7 +307,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 200138946}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 848890961}
+        m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
+        m_MethodName: Music
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &200138946
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -896,6 +908,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f33990b7b17b666468f41925f6217402, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sound: {fileID: 1278464354}
+  soundOn: {fileID: 21300000, guid: 697918c5463fefa4f8bdbe9699542f53, type: 3}
+  soundOff: {fileID: 21300000, guid: a0ba37a818d4fa94a8c971aafefec4dc, type: 3}
+  music: {fileID: 200138945}
+  musicOn: {fileID: 21300000, guid: 5ffce98cb0aa13941ac143edf0818882, type: 3}
+  musicOff: {fileID: 21300000, guid: 125caa9444ced784f920890ff2f7ae34, type: 3}
 --- !u!1 &1278464352
 GameObject:
   m_ObjectHideFlags: 0
@@ -978,7 +996,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1278464355}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 848890961}
+        m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
+        m_MethodName: Sound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1278464355
 MonoBehaviour:
   m_ObjectHideFlags: 0

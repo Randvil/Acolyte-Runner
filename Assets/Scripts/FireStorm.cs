@@ -15,7 +15,9 @@ public class FireStorm : BaseEffect
     protected override void Effect()
     {
         GetComponent<SpriteRenderer>().sprite = stormSprite;
-        gameObject.transform.localScale = new(1.7f, 1.7f, 1);
+        gameObject.transform.localScale = new(0.3f, 0.3f, 1);
+        transform.localPosition = new(transform.localPosition.x, transform.localPosition.y + 2, 0f);
+        GetComponent<BoxCollider>().size = new(2, 10);
 
         activated = true;
     }

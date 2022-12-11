@@ -62,7 +62,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   time: 2
   moveXatFrame: 32
-  stormSprite: {fileID: 21300000, guid: 7183cde5f55d9844ba041e96b34df60b, type: 3}
+  stormSprite: {fileID: 21300000, guid: 4f5ff68efa90aee459cf64215c6bd06b, type: 3}
 --- !u!212 &-6928823560666592891
 SpriteRenderer:
   m_ObjectHideFlags: 0
