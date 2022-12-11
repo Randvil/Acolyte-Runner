@@ -1,0 +1,549 @@
+fileFormatVersion: 2
+guid: 995461f79d78cce45a77d71f07ad27bb
+ModelImporter:
+  serializedVersion: 21300
+  internalIDToNameTable: []
+  externalObjects: {}
+  materials:
+    materialImportMode: 2
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    removeConstantScaleCurves: 1
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 3
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: mixamo.com
+      takeName: mixamo.com
+      internalID: -203655887218126122
+      firstFrame: 6
+      lastFrame: 27
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    nodeNameCollisionStrategy: 1
+    fileIdsGeneration: 2
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    optimizeBones: 1
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 1
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human:
+    - boneName: Cylinder:002_Cylinder:Hips
+      humanName: Hips
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Cylinder:002_Cylinder:LeftUpLeg
+      humanName: LeftUpperLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Cylinder:002_Cylinder:RightUpLeg
+      humanName: RightUpperLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Cylinder:002_Cylinder:LeftLeg
+      humanName: LeftLowerLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Cylinder:002_Cylinder:RightLeg
+      humanName: RightLowerLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Cylinder:002_Cylinder:LeftFoot
+      humanName: LeftFoot
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Cylinder:002_Cylinder:RightFoot
+      humanName: RightFoot
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Cylinder:002_Cylinder:Spine
+      humanName: Spine
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Cylinder:002_Cylinder:Spine1
+      humanName: Chest
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Cylinder:002_Cylinder:Neck
+      humanName: Neck
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Cylinder:002_Cylinder:Head
+      humanName: Head
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Cylinder:002_Cylinder:LeftShoulder
+      humanName: LeftShoulder
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Cylinder:002_Cylinder:RightShoulder
+      humanName: RightShoulder
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Cylinder:002_Cylinder:LeftArm
+      humanName: LeftUpperArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Cylinder:002_Cylinder:RightArm
+      humanName: RightUpperArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Cylinder:002_Cylinder:LeftForeArm
+      humanName: LeftLowerArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Cylinder:002_Cylinder:RightForeArm
+      humanName: RightLowerArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Cylinder:002_Cylinder:LeftHand
+      humanName: LeftHand
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Cylinder:002_Cylinder:RightHand
+      humanName: RightHand
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Cylinder:002_Cylinder:LeftToeBase
+      humanName: LeftToes
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Cylinder:002_Cylinder:RightToeBase
+      humanName: RightToes
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Cylinder:002_Cylinder:LeftHandIndex1
+      humanName: Left Index Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Cylinder:002_Cylinder:LeftHandIndex2
+      humanName: Left Index Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Cylinder:002_Cylinder:LeftHandIndex3
+      humanName: Left Index Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Cylinder:002_Cylinder:RightHandIndex1
+      humanName: Right Index Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Cylinder:002_Cylinder:RightHandIndex2
+      humanName: Right Index Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Cylinder:002_Cylinder:RightHandIndex3
+      humanName: Right Index Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Cylinder:002_Cylinder:Spine2
+      humanName: UpperChest
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    skeleton:
+    - name: Standing_Idle(Clone)
+      parentName: 
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Cylinder:002_Cylinder:006
+      parentName: Standing_Idle(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.000000081460335, y: 0, z: -0, w: 1}
+      scale: {x: 100, y: 100, z: 100}
+    - name: Point
+      parentName: Standing_Idle(Clone)
+      position: {x: -3.768409, y: 1.3737708, z: -1.7287333}
+      rotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+      scale: {x: 352.99023, y: 352.99023, z: 352.99023}
+    - name: Point.001
+      parentName: Standing_Idle(Clone)
+      position: {x: 1.8019291, y: 0.7751519, z: 1.1724745}
+      rotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+      scale: {x: 352.99023, y: 352.99023, z: 352.99023}
+    - name: Camera
+      parentName: Standing_Idle(Clone)
+      position: {x: -2.5993009, y: 0.9562115, z: -2.3668149}
+      rotation: {x: 0.051234603, y: 0.3837033, z: -0.021327093, w: 0.92178744}
+      scale: {x: 100, y: 100, z: 100}
+    - name: Cylinder:002_Cylinder:Hips
+      parentName: Standing_Idle(Clone)
+      position: {x: -0.0022130944, y: 0.6164828, z: -0.00420767}
+      rotation: {x: -0.0058733043, y: 0.0408502, z: 0.022478934, w: 0.99889517}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Cylinder:002_Cylinder:LeftUpLeg
+      parentName: Cylinder:002_Cylinder:Hips
+      position: {x: -0.11064564, y: -0.040651932, z: 0.0039975788}
+      rotation: {x: -0.025492113, y: 0.1172863, z: 0.9901133, w: 0.072592914}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Cylinder:002_Cylinder:LeftLeg
+      parentName: Cylinder:002_Cylinder:LeftUpLeg
+      position: {x: 6.0396133e-16, y: 0.26595646, z: -1.00379524e-10}
+      rotation: {x: -0.17339426, y: -0.000812465, z: 0.011213966, w: 0.98478836}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Cylinder:002_Cylinder:LeftFoot
+      parentName: Cylinder:002_Cylinder:LeftLeg
+      position: {x: -4.365713e-11, y: 0.21300747, z: -2.406841e-10}
+      rotation: {x: 0.55013126, y: -0.12263788, z: 0.11755468, w: 0.8176164}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Cylinder:002_Cylinder:LeftToeBase
+      parentName: Cylinder:002_Cylinder:LeftFoot
+      position: {x: 0.0000000013362581, y: 0.17113197, z: 3.017363e-10}
+      rotation: {x: 0.38129708, y: 0.4717669, z: -0.22994947, w: 0.76103336}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Cylinder:002_Cylinder:LeftToe_End
+      parentName: Cylinder:002_Cylinder:LeftToeBase
+      position: {x: 4.5980737e-11, y: 0.114280745, z: 7.5356964e-11}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Cylinder:002_Cylinder:RightUpLeg
+      parentName: Cylinder:002_Cylinder:Hips
+      position: {x: 0.11064564, y: -0.040651932, z: 0.0050497674}
+      rotation: {x: 0.06427738, y: 0.09035916, z: 0.9926402, w: 0.048672955}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Cylinder:002_Cylinder:RightLeg
+      parentName: Cylinder:002_Cylinder:RightUpLeg
+      position: {x: 3.1974422e-16, y: 0.26596043, z: -4.4248088e-11}
+      rotation: {x: -0.301129, y: -0.013717283, z: -0.0034416977, w: 0.9534785}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Cylinder:002_Cylinder:RightFoot
+      parentName: Cylinder:002_Cylinder:RightLeg
+      position: {x: -7.0075265e-11, y: 0.24066421, z: 0.0000000011555316}
+      rotation: {x: 0.72494584, y: 0.0578791, z: -0.09994484, w: 0.67905414}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Cylinder:002_Cylinder:RightToeBase
+      parentName: Cylinder:002_Cylinder:RightFoot
+      position: {x: -0.0000000056006084, y: 0.25029206, z: 0.0000000034069936}
+      rotation: {x: 0.26932058, y: -0.35791063, z: 0.08717681, w: 0.8898127}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Cylinder:002_Cylinder:RightToe_End
+      parentName: Cylinder:002_Cylinder:RightToeBase
+      position: {x: -4.268701e-11, y: 0.1135424, z: -6.626591e-11}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Cylinder:002_Cylinder:Spine
+      parentName: Cylinder:002_Cylinder:Hips
+      position: {x: -0, y: 0.07317352, z: -0.0033183002}
+      rotation: {x: -0.012037915, y: -0.005882422, z: -0.012442001, w: 0.99983287}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Cylinder:002_Cylinder:Spine1
+      parentName: Cylinder:002_Cylinder:Spine
+      position: {x: -0, y: 0.08545677, z: -5.3687197e-11}
+      rotation: {x: 0.021232402, y: -0.011245107, z: -0.02627274, w: 0.99936604}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Cylinder:002_Cylinder:Spine2
+      parentName: Cylinder:002_Cylinder:Spine1
+      position: {x: -0, y: 0.097664885, z: 3.0396734e-11}
+      rotation: {x: 0.021232393, y: -0.011245119, z: -0.02627274, w: 0.99936604}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Cylinder:002_Cylinder:LeftShoulder
+      parentName: Cylinder:002_Cylinder:Spine2
+      position: {x: -0.044991396, y: 0.09688972, z: 0.0014817026}
+      rotation: {x: 0.61860806, y: -0.3799278, z: 0.5329833, w: 0.4346352}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Cylinder:002_Cylinder:LeftArm
+      parentName: Cylinder:002_Cylinder:LeftShoulder
+      position: {x: 3.0016947e-10, y: 0.08826509, z: 8.187452e-10}
+      rotation: {x: -0.106852956, y: -0.2581384, z: 0.07114283, w: 0.95754147}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Cylinder:002_Cylinder:LeftForeArm
+      parentName: Cylinder:002_Cylinder:LeftArm
+      position: {x: 3.2713648e-10, y: 0.20108813, z: 0.0000000036825623}
+      rotation: {x: -0.007694333, y: 0.009597152, z: -0.034216154, w: 0.9993388}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Cylinder:002_Cylinder:LeftHand
+      parentName: Cylinder:002_Cylinder:LeftForeArm
+      position: {x: -0.0000000017368283, y: 0.17391308, z: 0.0000000013464176}
+      rotation: {x: -0.11257398, y: 0.15963227, z: -0.1477127, w: 0.9695492}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Cylinder:002_Cylinder:LeftHandIndex1
+      parentName: Cylinder:002_Cylinder:LeftHand
+      position: {x: -7.979406e-10, y: 0.044353988, z: -0.000000001380178}
+      rotation: {x: 0.06497344, y: 0.067102574, z: 0.04577423, w: 0.9945755}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Cylinder:002_Cylinder:LeftHandIndex2
+      parentName: Cylinder:002_Cylinder:LeftHandIndex1
+      position: {x: 2.0164803e-10, y: 0.02090371, z: -3.7614653e-10}
+      rotation: {x: -0.073338956, y: -0.0026848381, z: -0.031093866, w: 0.9968186}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Cylinder:002_Cylinder:LeftHandIndex3
+      parentName: Cylinder:002_Cylinder:LeftHandIndex2
+      position: {x: -0.0017813733, y: 0.027818153, z: 0.006356034}
+      rotation: {x: -0.14993364, y: -0.058181424, z: 0.21262787, w: 0.96380717}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Cylinder:002_Cylinder:LeftHandIndex4
+      parentName: Cylinder:002_Cylinder:LeftHandIndex3
+      position: {x: 0.0034495099, y: 0.0074155903, z: 0.0044624107}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Cylinder:002_Cylinder:Neck
+      parentName: Cylinder:002_Cylinder:Spine2
+      position: {x: -0, y: 0.109873004, z: 0.0000000058251395}
+      rotation: {x: -0.007494595, y: -0.0005807981, z: 0.00103077, w: 0.9999713}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Cylinder:002_Cylinder:Head
+      parentName: Cylinder:002_Cylinder:Neck
+      position: {x: -0, y: 0.010153656, z: 0.000090777874}
+      rotation: {x: -0.030148793, y: -0.0005572974, z: 0.0010436665, w: 0.99954474}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Cylinder:002_Cylinder:HeadTop_End
+      parentName: Cylinder:002_Cylinder:Head
+      position: {x: -0, y: 0.18871856, z: 0.0016872096}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Cylinder:002_Cylinder:RightShoulder
+      parentName: Cylinder:002_Cylinder:Spine2
+      position: {x: 0.044991396, y: 0.09707712, z: -0.0026507366}
+      rotation: {x: 0.56089824, y: 0.43888566, z: -0.55734575, w: 0.42677668}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Cylinder:002_Cylinder:RightArm
+      parentName: Cylinder:002_Cylinder:RightShoulder
+      position: {x: -2.4447203e-10, y: 0.088265084, z: -0.0000000014352752}
+      rotation: {x: -0.1400097, y: 0.26426268, z: -0.06858866, w: 0.9517658}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Cylinder:002_Cylinder:RightForeArm
+      parentName: Cylinder:002_Cylinder:RightArm
+      position: {x: 3.666544e-11, y: 0.20118877, z: 5.585474e-10}
+      rotation: {x: 0.0006767807, y: -0.012008498, z: 0.033631507, w: 0.99936193}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Cylinder:002_Cylinder:RightHand
+      parentName: Cylinder:002_Cylinder:RightForeArm
+      position: {x: 0.0000000013135079, y: 0.17497487, z: -0.000000001899948}
+      rotation: {x: -0.13376185, y: -0.2665994, z: 0.16007023, w: 0.9409623}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Cylinder:002_Cylinder:RightHandIndex1
+      parentName: Cylinder:002_Cylinder:RightHand
+      position: {x: 4.9949947e-11, y: 0.018678753, z: -1.7866882e-11}
+      rotation: {x: 0.03695688, y: 0.99315786, z: 0.071480416, w: -0.08462981}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Cylinder:002_Cylinder:RightHandIndex2
+      parentName: Cylinder:002_Cylinder:RightHandIndex1
+      position: {x: 3.261931e-10, y: 0.033407047, z: 2.4121702e-10}
+      rotation: {x: 0.25252205, y: 0.00045270467, z: 0.018452095, w: 0.96741515}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Cylinder:002_Cylinder:RightHandIndex3
+      parentName: Cylinder:002_Cylinder:RightHandIndex2
+      position: {x: 0.0015249366, y: 0.032654475, z: -0.02202976}
+      rotation: {x: -0.12026763, y: 0.0123429615, z: 0.009969883, w: 0.99261475}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Cylinder:002_Cylinder:RightHandIndex4
+      parentName: Cylinder:002_Cylinder:RightHandIndex3
+      position: {x: 0.0011201734, y: 0.015510347, z: -0.0056912173}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 1
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 757455fd88486df40a57b05faf082710, type: 3}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 3
+  humanoidOversampling: 1
+  avatarSetup: 2
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 1
+  remapMaterialsIfMaterialImportModeIsNone: 0
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

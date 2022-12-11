@@ -22,10 +22,16 @@ public class LevelFactory : MonoBehaviour
     private float bonusProbability;
 
     [SerializeField]
+    private float obstacleProbability;
+
+    [SerializeField]
     private GameObject coinPrefab;
 
     [SerializeField]
     private GameObject[] bonusesPrefabs;
+
+    [SerializeField]
+    private GameObject[] obstaclesPrefabs;
 
 
     [Header("Platforms")]
@@ -98,6 +104,7 @@ public class LevelFactory : MonoBehaviour
         {
             float newXPositon = previousCoinOrBonusPosition + Random.Range(minDistanceBetweenCoinOrBonus, maxDistanceBetweenCoinOrBonus);
             if (Random.Range(0f, 100f) < bonusProbability) Instantiate(bonusesPrefabs[Random.Range(0, bonusesPrefabs.Length)], new Vector3(newXPositon, 0f, 0f), Quaternion.identity);
+            else if (Random.Range(0f, 100f) < obstacleProbability) Instantiate(obstaclesPrefabs[Random.Range(0, obstaclesPrefabs.Length)], new Vector3(newXPositon, 0f, 0f), Quaternion.identity);
             else Instantiate(coinPrefab, new Vector3(newXPositon, 0f, 0f), Quaternion.identity);
             previousCoinOrBonusPosition = newXPositon;
         }

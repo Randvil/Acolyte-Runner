@@ -21,8 +21,6 @@ public class Obstacle : MonoBehaviour
         PlayerController player = other.GetComponent<PlayerController>();
         if (player != null)
         {
-            //player.DecreaseSpeed(deceleration);
-            //Destroy(gameObject);
             player.GetHit();
             GameManager.instance.LoseGame();
         }
