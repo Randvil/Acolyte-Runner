@@ -4,179 +4,141 @@ using UnityEngine;
 
 public class LevelFactory : MonoBehaviour
 {
-    [SerializeField]
-    private float levelWidth; //100
-
-    [Header("Objects")]
+    [Header("Coins and Bonuses")]
 
     [SerializeField]
-    private float minDistanceBetweenObjects; //4
+    private int coinsAndBonusesNumber;
 
     [SerializeField]
-    private float maxDistanceBetweenObjects; //10
-
-    [Header("Obstacles")]
+    private float previousCoinOrBonusPosition;
 
     [SerializeField]
-    private GameObject obstaclePrefab;
-
-    /*[SerializeField]
-    private int obstacleNumber;
+    private float minDistanceBetweenCoinOrBonus;
 
     [SerializeField]
-    private float previousObstaclePosition;
+    private float maxDistanceBetweenCoinOrBonus;
 
     [SerializeField]
-    private float minDistanceBetweenObstacles;
-
-    [SerializeField]
-    private float maxDistanceBetweenObstacles;*/
-
-
-    [Header("Coins")]
+    private float bonusProbability;
 
     [SerializeField]
     private GameObject coinPrefab;
 
-    /*[SerializeField]
-    private int coinNumber;
-
     [SerializeField]
-    private float previousCoinPosition;
+    private GameObject[] bonusesPrefabs;
 
-    [SerializeField]
-    private float distanceBetweenCoins;
-
-    [SerializeField]
-    private int coinHeight;*/
 
     [Header("Platforms")]
 
     [SerializeField]
+    private Transform player;
+
+    [SerializeField]
     private GameObject platformPrefab;
 
-    /*[SerializeField]
-    private int minPlatformNumber;
+    [SerializeField]
+    private int minPlatformNumberInChunk;
 
     [SerializeField]
-    private int maxPlatformNumber;
+    private int maxPlatformNumberInChunk;
 
     [SerializeField]
-    private float previousPlatformPositionX;
+    private int chunkNumber;
 
     [SerializeField]
-    private float previousPlatformPositionY;*/
+    private float distanceBetweenPlatforms;
 
     [SerializeField]
-    private float minDistanceBetweenPlatforms; //4
+    private float minPlatformHeight;
 
     [SerializeField]
-    private float maxDistanceBetweenPlatforms; //6
+    private float maxPlatformHeight;
 
     [SerializeField]
-    private float minPlatformHeight; //2
+    private float platformHeightStep;
 
     [SerializeField]
-    private float maxPlatformHeight; //10
+    private float distanceBetweenChunks;
+
+    private float previousPlatformPositionX = 10f;
+    private float previousPlatformPositionY;
+    private float newYPosition;
+
+    [Header("Background")]
 
     [SerializeField]
-    private float platformHeightDifferencePos; //2
+    private GameObject background;
 
     [SerializeField]
-    private float platformHeightDifferenceNeg; //-2
-
-    [Header("JumpEffect")]
+    private float backgroundWidth;
 
     [SerializeField]
-    private GameObject jumpEffectPrefab;
+    private float backgroundYPosition;
 
-    [Header("SpeedEffect")]
+    private int backgroundNumber;
+    private List<GameObject> backgrounds = new();
 
-    [SerializeField]
-    private GameObject speedEffectPrefab;
-
-    [Header("MoneyDecrease")]
-
-    [SerializeField]
-    private GameObject moneyDecreasePrefab;
-
-    private string PLATFORM_TAG = "Platform";
-
-    private void Start()
+    private void Update()
     {
-        GeneratePlatforms();
-        CreateObjectsOnGround();
-        CreateObjectsOnPlatforms();
-    }
+        if (player.transform.position.x > previousPlatformPositionX - 20f) BuildPlatformChunk();
+        if (player.transform.position.x > previousCoinOrBonusPosition - 20f) SpawnCoinsAndBonuses();
 
-    private void GeneratePlatforms()
-    {
-        //random x position for first platform
-        float posX = Random.Range(0, levelWidth);
-        //start y so player can jump on it
-        float posY = 2f;
-        var diff = new List<float>() { platformHeightDifferencePos, platformHeightDifferenceNeg };
-        while (posX < levelWidth)
+        if (player.transform.position.x > (backgroundNumber - 1) * backgroundWidth)
         {
-            Instantiate(platformPrefab, new Vector3(posX, posY, 0f), Quaternion.identity);
+            backgrounds.Add(Instantiate(background, new Vector3(backgroundWidth * backgroundNumber, backgroundYPosition, 0f), Quaternion.identity));
+            if (backgroundNumber > 1) Destroy(backgrounds[backgroundNumber - 2]);
 
-            if (posY < maxPlatformHeight && posY > minPlatformHeight)
-            {
-                posY += diff[Random.Range(0, diff.Count)];
-            }
-            else if (posY == minPlatformHeight)
-            {
-                posY += platformHeightDifferencePos;
-            }
-            else if (posY == maxPlatformHeight)
-            {
-                posY += platformHeightDifferenceNeg;
-            }
-
-            posX += Random.Range(minDistanceBetweenPlatforms, maxDistanceBetweenPlatforms);
+            backgroundNumber += 1;
         }
     }
 
-    private void CreateObjectsOnGround()
+    private void SpawnCoinsAndBonuses()
     {
-        var objects = new List<GameObject>() { coinPrefab, obstaclePrefab, jumpEffectPrefab, moneyDecreasePrefab, speedEffectPrefab };
-        float posX = 6f; //can be changed to random position for first object
-        while (posX < levelWidth)
+        for (int i = 0; i < coinsAndBonusesNumber; i++)
         {
-            Instantiate(objects[Random.Range(0, objects.Count)], new Vector3(posX, Random.Range(0, 2), 0f), Quaternion.identity);
-            posX += Random.Range(minDistanceBetweenObjects, maxDistanceBetweenObjects); ;
+            float newXPositon = previousCoinOrBonusPosition + Random.Range(minDistanceBetweenCoinOrBonus, maxDistanceBetweenCoinOrBonus);
+            if (Random.Range(0f, 100f) < bonusProbability) Instantiate(bonusesPrefabs[Random.Range(0, bonusesPrefabs.Length)], new Vector3(newXPositon, 0f, 0f), Quaternion.identity);
+            else Instantiate(coinPrefab, new Vector3(newXPositon, 0f, 0f), Quaternion.identity);
+            previousCoinOrBonusPosition = newXPositon;
         }
     }
 
-    private void CreateObjectsOnPlatforms()
+    private void CreatePlatforms()
     {
-        GameObject[] platforms;
-        platforms = GameObject.FindGameObjectsWithTag(PLATFORM_TAG);
-
-        var objects = new List<GameObject>() { coinPrefab, obstaclePrefab, jumpEffectPrefab, moneyDecreasePrefab, speedEffectPrefab};
-
-        foreach (GameObject plat in platforms)
+        for (int i = 0; i < Random.Range(minPlatformNumberInChunk, maxPlatformNumberInChunk + 1); i++)
         {
-            //i hope x position is always the half of game object :(
-            float half = GetObjectWidth(plat) / 2;
-            float posX = plat.transform.position.x - half;
-            while (posX < plat.transform.position.x + half) 
+            float newXPositon = previousPlatformPositionX + distanceBetweenPlatforms;
+            if (i == 0)
             {
-                Instantiate(objects[Random.Range(0, objects.Count)], 
-                    new Vector3(posX, plat.transform.position.y + 2, 0f), Quaternion.identity);
-                posX += 2;//Random.Range(minDistanceBetweenObjects, maxDistanceBetweenObjects);
+                newYPosition = 2;
             }
+            else
+            {
+                if (previousPlatformPositionY < maxPlatformHeight && previousPlatformPositionY > minPlatformHeight)
+                {
+                    newYPosition = previousPlatformPositionY + Mathf.Sign(Random.Range(-1f, 1f)) * platformHeightStep;
+                }
+                else if (previousPlatformPositionY == minPlatformHeight)
+                {
+                    newYPosition = previousPlatformPositionY + platformHeightStep;
+                }
+                else if (previousPlatformPositionY == maxPlatformHeight)
+                {
+                    newYPosition = previousPlatformPositionY - platformHeightStep;
+                }
+            }
+
+            GameObject platform = Instantiate(platformPrefab, new Vector3(newXPositon, newYPosition, 0f), Quaternion.identity);
+            Instantiate(coinPrefab, new Vector3(platform.transform.position.x - 1f, platform.transform.position.y + 1f, 0f), Quaternion.identity);
+            Instantiate(coinPrefab, new Vector3(platform.transform.position.x + 1f, platform.transform.position.y + 1f, 0f), Quaternion.identity);
+            previousPlatformPositionX = newXPositon;
+            previousPlatformPositionY = newYPosition;
         }
-
     }
 
-    //getting width from box collider size and object scale
-    private float GetObjectWidth(GameObject gameObject)
+    private void BuildPlatformChunk()
     {
-        BoxCollider boxCollider = gameObject.GetComponent<BoxCollider>();
-        return boxCollider.size.x * gameObject.transform.localScale.x;
+        CreatePlatforms();
+        previousPlatformPositionX += distanceBetweenChunks;
     }
-
-
-
 }
