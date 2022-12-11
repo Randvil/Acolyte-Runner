@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
@@ -56,7 +57,7 @@ public class GameManager : MonoBehaviour
     private int coins;
     private Coroutine audioClipCoroutine;
 
-    private AudioSource audioSource;
+    public AudioSource audioSource;
 
     private void Start()
     {
@@ -65,6 +66,8 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 0f;
 
         audioSource = GetComponent<AudioSource>();
+
+        audioSource.enabled = StaticSettings.soundOn;
     }
 
     private void Update()
