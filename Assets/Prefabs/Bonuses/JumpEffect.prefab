@@ -48,7 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   time: 9
-  gravityModifier: 0.3
+  gravityModifier: 0.5
 --- !u!212 &6035923812030765686
 SpriteRenderer:
   m_ObjectHideFlags: 0

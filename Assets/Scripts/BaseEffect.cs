@@ -25,9 +25,5 @@ public abstract class BaseEffect : MonoBehaviour
 
     protected abstract void Effect();
 
-    public virtual void Ending()
-    {
-        //When override add logic to remove effect from player
-        Destroy(gameObject);
-    }
+    public virtual void Ending() { }
 }
