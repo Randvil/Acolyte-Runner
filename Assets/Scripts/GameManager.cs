@@ -54,7 +54,7 @@ public class GameManager : MonoBehaviour
 
     public static GameManager instance;
 
-    private int coins;
+    public int coins = 0;
     private Coroutine audioClipCoroutine;
 
     public AudioSource audioSource;

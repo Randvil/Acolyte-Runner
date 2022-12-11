@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18028334, g: 0.2257134, b: 0.30692226, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571328, b: 0.3069217, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1693,7 +1693,7 @@ MonoBehaviour:
   distanceBetweenChunks: 10
   background: {fileID: 2562352699122440987, guid: ada5be31b460da34eac9643be57a1726, type: 3}
   backgroundWidth: 81
-  backgroundYPosition: 10
+  backgroundYPosition: 13
 --- !u!4 &1044897490
 Transform:
   m_ObjectHideFlags: 0
@@ -1733,6 +1733,7 @@ MonoBehaviour:
   loseScreenCoinsUI: {fileID: 1571288212}
   winScreenCoinsUI: {fileID: 139128128}
   startScreenUI: {fileID: 260939635}
+  coins: 0
   audioSource: {fileID: 0}
 --- !u!82 &1044897492
 AudioSource:
@@ -1748,7 +1749,7 @@ AudioSource:
   m_PlayOnAwake: 0
   m_Volume: 0.424
   m_Pitch: 1
-  Loop: 1
+  Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0

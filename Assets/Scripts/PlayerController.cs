@@ -117,14 +117,14 @@ public class PlayerController : MonoBehaviour
     }
 
     public void CollectCoin()
-    {
-        GameManager.instance.PlayAudioClip(needMoreGoldAudioClip);
+    {            
         GameManager.instance.OnCoinCollected();
+        if ((GameManager.instance.coins % 10) == 0)
+            GameManager.instance.PlayAudioClip(needMoreGoldAudioClip);
     }
 
     public void LostCoins(int amount)
     {
-        GameManager.instance.PlayAudioClip(needMoreGoldAudioClip);
         GameManager.instance.OnCoinDecrease(amount);
     }
 
